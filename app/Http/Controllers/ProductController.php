@@ -14,7 +14,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(5);
+        $products = Product::active()->paginate(5);
 
         return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -79,7 +79,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-//        dd($product);
         $request->validate([
             'name' => 'required|min:10',
             'art' => 'required|unique:products,art,'.$product->id.'|regex:/^[A-Za-z0-9]+$/',

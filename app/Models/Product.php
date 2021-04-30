@@ -10,4 +10,9 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = ['name','art','status','data'];
+
+    public function scopeActive($query)
+    {
+        return $query->where('status', 'available');
+    }
 }

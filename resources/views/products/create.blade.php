@@ -51,7 +51,7 @@
                 <div class="form-group">
                     <strong>Data:</strong>
                     <textarea class="form-control" style="height:50px" name="data"
-                              placeholder="key1 => value1, key2 => value2,"></textarea>
+                              placeholder="{&#34key1&#34: 1,&#34key2&#34: 2}"></textarea>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
