@@ -11,6 +11,10 @@ class Product extends Model
 
     protected $fillable = ['name','art','status','data'];
 
+    protected $casts = [
+        'data' => 'array',
+    ];
+
     public function scopeActive($query)
     {
         return $query->where('status', 'available');

@@ -34,7 +34,11 @@
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->art }}</td>
-                <td>{{ $product->data }}</td>
+                <td>
+                    @foreach($product->data as $key => $item)
+                        {{ $key .' - '.$item}}<br>
+                    @endforeach
+                </td>
                 <td>{{ $product->status }}</td>
                 <td>{{ date_format($product->created_at, 'jS M Y') }}</td>
                 <td>
