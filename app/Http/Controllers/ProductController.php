@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\EmailJob;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::active()->paginate(5);
-//dd($products);
 
         return view('products.index', compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
@@ -44,7 +44,14 @@ class ProductController extends Controller
             'art' => 'required|unique:products|regex:/^[A-Za-z0-9]+$/',
         ]);
 
-        Product::create($request->all());
+        $product = new Product();
+        $product->name = $request->name;
+        $product->art = $request->art;
+        $product->status = $request->status;
+        $product->data = $request->data;
+        $product->save();
+
+        EmailJob::dispatch();
 
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }

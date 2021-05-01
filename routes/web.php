@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::resource('products', \App\Http\Controllers\ProductController::class);
+
+Route::get('/send-email', [\App\Http\Controllers\MailController::class, 'send']);

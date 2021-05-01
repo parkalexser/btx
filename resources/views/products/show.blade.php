@@ -35,7 +35,9 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Data:</strong>
-                {{ $product->data}}
+                @foreach($product->data as $key => $item)
+                    {{ $key .' - '.$item}}<br>
+                @endforeach
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

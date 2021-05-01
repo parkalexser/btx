@@ -12,8 +12,12 @@ class Product extends Model
     protected $fillable = ['name','art','status','data'];
 
     protected $casts = [
-        'data' => 'array',
+        'options' => 'array',
     ];
+
+    public function getDataAttribute($value) {
+        return json_decode($value);
+    }
 
     public function scopeActive($query)
     {
